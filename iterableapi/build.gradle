@@ -62,7 +62,7 @@ dependencies {
 }
 
 ext {
-    publishedGroupId = 'com.iterable'
+    publishedGroupId = 'com.funda'
     libraryName = 'iterableapi'
     artifact = 'iterableapi'
 
@@ -71,7 +71,7 @@ ext {
     siteUrl = 'https://github.com/Iterable/iterable-android-sdk'
     gitUrl = 'https://github.com/Iterable/iterable-android-sdk.git'
 
-    libraryVersion = '3.4.9'
+    libraryVersion = '3.4.10'
 
     developerId = 'davidtruong'
     developerName = 'David Truong'
@@ -83,9 +83,8 @@ ext {
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-if(hasProperty("mavenPublishEnabled")) {
-    apply from: '../maven-push.gradle'
-}
+apply from: '../azure-maven-push.gradle'
+
 
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs

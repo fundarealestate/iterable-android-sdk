@@ -1,0 +1,27 @@
+apply plugin: 'maven-publish'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+afterEvaluate {
+     publishing {
+         publications {
+             release(MavenPublication) {
+                 from components.release
+                 groupId publishedGroupId
+                 artifactId libraryName
+                 version libraryVersion
+             }
+         }
+         repositories {
+             maven {
+                 name = 'azure'
+                 url properties['repositoryUrl']
+                 credentials {
+                     username properties['userName']
+                     password properties['azureMavenAccessToken']
+                 }
+             }
+         }
+     }
+ }
